@@ -16,7 +16,7 @@ def kwarg_test(**kwargs):
     return "arguments: {kwargs}".format(kwargs=kwargs)
 
 
-def dict_to_utf8(dict):
+def dict_to_utf8(dictionary):
     def encode_dict_to_utf8(d):
         encoded_dict = {}
         for k, v in d.items():
@@ -29,7 +29,7 @@ def dict_to_utf8(dict):
             encoded_dict[k] = v
         return encoded_dict
 
-    encoded_dict = encode_dict_to_utf8(dict)
+    encoded_dict = encode_dict_to_utf8(dictionary)
     return encoded_dict
 
 
