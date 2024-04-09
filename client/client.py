@@ -24,13 +24,17 @@ class Client:
         return self.post_request("kwarg_test", **kwargs)
 
     def Say(self, text: str, POST: bool = True) -> str:
+        """Make the robot say something
+
+        Args:
+            text (str): Text to say.
+            POST (bool, optional): Legacy option. Unsure what it does.
+
+        Returns:
+            str: response code
+        """
+
         return self.post_request("Say", text=text, POST=POST)
-
-    def DetectFace(self, switch: bool, period: int = 100) -> str:
-        return self.post_request("DetectFace", switch=switch, period=period)
-
-    def DetectLandMark(self):
-        return self.post_request("DetectLandMark")
 
 
 if __name__ == "__main__":
