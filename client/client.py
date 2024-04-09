@@ -18,7 +18,9 @@ class Client:
         return response.content.decode("utf-8")
 
     def _delay_test(self) -> str:
-        return self.post_request("delay_test", time=timeit.default_timer())
+        return self.post_request(
+            "delay_test", client_time=timeit.default_timer()
+        )
 
     def _kwarg_test(self, **kwargs) -> str:
         return self.post_request("kwarg_test", **kwargs)

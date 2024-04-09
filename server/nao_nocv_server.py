@@ -19,7 +19,8 @@ class Robot:
         client_time = kwargs.get("time")
         server_time = timeit.default_timer()
         delay = client_time - server_time
-        return "Delay: {delay} ns".format(delay=delay)
+        response = {"status": "success", "delay": delay}
+        return response
 
     def kwarg_test(**kwargs):
         return "arguments: {kwargs}".format(kwargs=kwargs)
