@@ -20,9 +20,9 @@ def dict_to_utf8(dictionary):
     def encode_dict_to_utf8(d):
         encoded_dict = {}
         for k, v in d.items():
-            if isinstance(k, str):
+            if isinstance(k, unicode):
                 k = k.encode("utf-8")
-            if isinstance(v, str):
+            if isinstance(v, unicode):
                 v = v.encode("utf-8")
             elif isinstance(v, dict):
                 v = encode_dict_to_utf8(v)
