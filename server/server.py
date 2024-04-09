@@ -22,7 +22,7 @@ class MyServer(BaseHTTPRequestHandler):
         post_data = self.rfile.read(content_length)
         try:
             try:
-                parsed_data = json.loads(post_data)
+                parsed_data = json.loads(post_data, encoding="utf-8")
             except ValueError:
                 self.send_error(400, "Invalid JSON format")
                 return

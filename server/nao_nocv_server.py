@@ -15,9 +15,9 @@ class Robot:
         self.disconnect_proxies()
 
     def connect_proxies(self):
-        def connect_single_proxy(proxy_name, ip, port):
+        def connect_single_proxy(proxy_name):
             try:
-                proxy = naoqi.ALProxy(proxy_name, ip, port)
+                proxy = naoqi.ALProxy(proxy_name, self.ip, self.port)
                 return proxy
             except Exception as e:
                 print(
@@ -62,24 +62,6 @@ class Robot:
                 response["status"] = "success"
         except Exception as e:
             response["status"] = "nao_nocvError"
-            response["message"] = str(e)
-        return response
-
-    def EyeLed(self, color=[0, 0, 0], interpol_time=0, POST=True):
-        response = {}
-        try:
-            if POST:
-                self.proxies["eye_leds"].post.fadeRGB(
-                    "FaceLeds", color, interpol_time
-                )
-                response["status"] = "success"
-            elif not POST:
-                self.proxies["eye_leds"].fadeRGB(
-                    "FaceLeds", color, interpol_time
-                )
-                response["status"] = "success"
-        except Exception as e:
-            response["status"] = "error"
             response["message"] = str(e)
         return response
 
