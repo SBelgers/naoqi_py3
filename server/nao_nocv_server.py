@@ -1,4 +1,5 @@
 # import naoqi
+import timeit
 
 
 class Robot:
@@ -13,6 +14,15 @@ class Robot:
 
     def __exit__(self, exc_type, exc_value, traceback):
         self.disconnect_proxies()
+
+    def delay_test(**kwargs):
+        client_time = kwargs.get("time")
+        server_time = timeit.default_timer()
+        delay = client_time - server_time
+        return "Delay: {delay} ns".format(delay=delay)
+
+    def kwarg_test(**kwargs):
+        return "arguments: {kwargs}".format(kwargs=kwargs)
 
     def connect_proxies(self):
         def connect_single_proxy(proxy_name):

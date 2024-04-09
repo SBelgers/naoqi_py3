@@ -5,17 +5,6 @@ import re
 from nao_nocv_server import Robot
 
 
-def delay_test(**kwargs):
-    client_time = kwargs.get("time")
-    server_time = timeit.default_timer()
-    delay = client_time - server_time
-    return "Delay: {delay} ns".format(delay=delay)
-
-
-def kwarg_test(**kwargs):
-    return "arguments: {kwargs}".format(kwargs=kwargs)
-
-
 def dict_to_utf8(dictionary):
     def encode_dict_to_utf8(d):
         encoded_dict = {}
