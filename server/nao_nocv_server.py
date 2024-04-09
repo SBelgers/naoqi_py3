@@ -1,4 +1,8 @@
-# import naoqi
+try:
+    import naoqi
+except:
+    print("Error importing naoqi")
+    pass
 import timeit
 
 
@@ -15,8 +19,7 @@ class Robot:
     def __exit__(self, exc_type, exc_value, traceback):
         self.disconnect_proxies()
 
-    def delay_test(**kwargs):
-        client_time = kwargs.get("time")
+    def delay_test(self, client_time):
         server_time = timeit.default_timer()
         delay = client_time - server_time
         response = {"status": "success", "delay": delay}
