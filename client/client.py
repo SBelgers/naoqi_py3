@@ -40,5 +40,5 @@ class Client:
 if __name__ == "__main__":
     url = "http://192.168.43.132:8000"
     robot = Client(url)
-    print(robot.post_request("Say", text="Hello simon!"))
+    print(robot.Say(text="Hello simon!"))
     print(robot._delay_test())

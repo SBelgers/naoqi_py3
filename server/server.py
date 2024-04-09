@@ -16,16 +16,34 @@ def kwarg_test(**kwargs):
     return "arguments: {kwargs}".format(kwargs=kwargs)
 
 
+def dict_to_utf8(dict):
+    def encode_dict_to_utf8(d):
+        encoded_dict = {}
+        for k, v in d.items():
+            if isinstance(k, str):
+                k = k.encode("utf-8")
+            if isinstance(v, str):
+                v = v.encode("utf-8")
+            elif isinstance(v, dict):
+                v = encode_dict_to_utf8(v)
+            encoded_dict[k] = v
+        return encoded_dict
+
+    encoded_dict = encode_dict_to_utf8(dict)
+    return encoded_dict
+
+
 class MyServer(BaseHTTPRequestHandler):
     def do_POST(self):
         content_length = int(self.headers["Content-Length"])
         post_data = self.rfile.read(content_length)
         try:
             try:
-                parsed_data = json.loads(post_data, encoding="utf-8")
+                parsed_data = json.loads(post_data)
             except ValueError:
                 self.send_error(400, "Invalid JSON format")
                 return
+            parsed_data = dict_to_utf8(parsed_data)
             function_name = parsed_data.get("function", "")
             kwargs = parsed_data.get("kwargs", {})
 
