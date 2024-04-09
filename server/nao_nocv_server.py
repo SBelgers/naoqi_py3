@@ -33,7 +33,7 @@ class Robot:
             "ALLeds": "unset",
         }
         for name, proxy in self.proxies.items():
-            self.proxies[name] = connect_single_proxy(name, self.ip, self.port)
+            self.proxies[name] = connect_single_proxy(name)
 
     def disconnect_proxies(self):
         def disconnect_single_proxy(proxy, name):
@@ -67,6 +67,6 @@ class Robot:
 
 
 if __name__ == "__main__":
-    with Robot("nao", "0.0.0.0", 9559) as robot:
+    with Robot("nao", "192.168.0.103", 9559) as robot:
         print("Say", robot.Say("Hello, world!"))
         print("EyeLed", robot.EyeLed([255, 0, 0], 0.5))

@@ -69,7 +69,7 @@ class MyHTTPServer(HTTPServer):
 
 def run_server():
     server_address = ("", 8000)
-    with Robot("nao", "0.0.0.0", 9559) as robot:
+    with Robot("nao", "192.168.0.103", 9559) as robot:
         httpd = MyHTTPServer(server_address, MyServer)
         httpd.robot = robot
         print("Server running on port 8000")
